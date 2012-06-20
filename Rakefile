@@ -17,11 +17,21 @@ Jeweler::Tasks.new do |gem|
   gem.name = "ruby_css_lint"
   gem.homepage = "http://github.com/amutz/ruby_css_lint"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "andrew.mutz@gmail.com"
+  gem.summary = %Q{CSS Lint testing for Ruby}
+  gem.description = %Q{Wraps up the CSS lint tool from https://github.com/stubbornella/csslint into a gem}
+  gem.email = "andrew.mutz@appfolio.com"
   gem.authors = ["Andrew Mutz"]
   # dependencies defined in Gemfile
+  
+  Dir.glob('lib/**/*').each do |f|
+    gem.files.include f
+  end
+
+  Dir.glob('csslint/**/*').each do |f|
+    gem.files.include f
+  end
+  
+  gem.files.include "js.jar"
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -50,4 +60,12 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "ruby_css_lint #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+namespace :css_lint do
+  task :compile_rule_set do |t|
+    csslint_working_directory = File.dirname(__FILE__) + "/csslint/"
+    `cd #{csslint_working_directory}`
+    `ant`
+  end
 end

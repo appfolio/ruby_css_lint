@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "ruby_css_lint"
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew Mutz"]
-  s.date = "2012-06-20"
+  s.date = "2012-06-21"
   s.description = "Wraps up the CSS lint tool from https://github.com/stubbornella/csslint into a gem"
   s.email = "andrew.mutz@appfolio.com"
   s.extra_rdoc_files = [
@@ -132,6 +132,7 @@ Gem::Specification.new do |s|
     "csslint/tests/testrunner.htm",
     "js.jar",
     "lib/ruby_css_lint.rb",
+    "ruby_css_lint.gemspec",
     "test/helper.rb",
     "test/test_ruby_css_lint.rb"
   ]

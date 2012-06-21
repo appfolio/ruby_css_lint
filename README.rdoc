@@ -32,7 +32,7 @@ You can control the behavior of Ruby CSS Lint by modifying the implementation of
     end
   
     def self.location_of_css_files(rails_root)
-      [rails_root.to_s+"/public/assets/application2.css"]
+      [rails_root.to_s+"/public/assets/application.css"]
     end
   end
   

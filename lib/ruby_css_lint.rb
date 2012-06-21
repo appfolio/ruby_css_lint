@@ -12,6 +12,10 @@ if defined?(Rails)
             RubyCssLint::construct_js_and_run_rhino(RubyCssLint::location_of_css_files(Rails.root))
           end
 
+          task :dump_to_file => :environment do |t|
+            RubyCssLint::construct_js_and_run_rhino(RubyCssLint::location_of_css_files(Rails.root), 'css_lint_output.txt')
+          end
+
           task :generate_config => :environment do |t|
             File.open("#{Rails.root.to_s}/config/initializers/css_lint.rb", "w") do |filehandle|
               filehandle.puts <<-CSS_LINT_INIT
@@ -96,7 +100,7 @@ CSS_LINT_DEFAULT
     result
   end
   
-  def self.construct_js_and_run_rhino(css_files)
+  def self.construct_js_and_run_rhino(css_files, output_location = nil)
     css_files = css_files.join(" ") if css_files.is_a?(Array)
     
     Tempfile.open("csslint_temp_js") do |tempfile|
@@ -110,15 +114,16 @@ HEADER
 FOOTER
       tempfile.puts`cat #{list_of_js_files_to_compile_step_2}`
       tempfile.flush
-      run_rhino_with_js_file(tempfile.path, css_files)
+      run_rhino_with_js_file(tempfile.path, css_files, output_location)
     end
 
     
   end
   
-  def self.run_rhino_with_js_file(file, css_files)
+  def self.run_rhino_with_js_file(file, css_files, output_location = nil)
     rhino_jarfile = File.dirname(__FILE__) + "/../js.jar"
     command = "java -jar #{rhino_jarfile} #{file} #{construct_error_and_warning_options} #{css_files}"
+    command += " > #{output_location}" if output_location
     result = `#{command}`
     puts result
   end

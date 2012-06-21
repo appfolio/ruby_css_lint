@@ -155,14 +155,6 @@ FOOTER
       cli_rhino 
     ].join(" ")
   end
-  
-  
-  def self.run
-    rhino_jarfile = File.dirname(__FILE__) + "../js.jar"
-    rhino_csslint_file = File.dirname(__FILE__) + "../csslint/"
-    command = "java -jar js.jar "
-  end
-  
 end
 
 

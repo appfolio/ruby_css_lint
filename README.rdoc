@@ -1,19 +1,52 @@
 = ruby_css_lint
 
-Description goes here.
+A repackaging of CSS Lint [https://github.com/stubbornella/csslint] for use with Rails.
 
-== Contributing to ruby_css_lint
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
-* Fork the project.
-* Start a feature/bugfix branch.
-* Commit and push until you are happy with your contribution.
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+If you're using Rails 3.1, you probably want to run css lint on your precompiled assets.  Compile them:
+```ruby
+rake assets:precompile
+```
+
+
+To install Ruby CSS Lint, Add it to your gemfile
+```ruby
+gem 'ruby_css_lint'
+```
+And after a bundle install, run it:
+```ruby
+rake css_lint:run
+```
+
+You probably want more control over things, so generate a config file:
+```ruby
+rake css_lint:generate_config
+```
+
+You will find the config file at ```config/initializers/css_lint.rb```.
+
+You can control the behavior of Ruby CSS Lint by modifying the implementation of the methods ```RubyCssLint::location_of_css_files```, ```RubyCssLint::location_of_custom_rules``` and  ```RubyCssLint::ruleset_classifications```.
+
+```ruby
+module RubyCssLint
+  def self.ruleset_classifications
+    {
+      "floats" => RubyCssLint::WARNING,
+    }
+  end
+
+  def self.location_of_custom_rules(rails_root)
+    ["#{rails_root.to_s}/test/css_lint/*.js"]
+  end
+
+  def self.location_of_css_files(rails_root)
+    [rails_root.to_s+"/public/assets/application2.css"]
+  end
+end
+```
+
 
 == Copyright
 
-Copyright (c) 2012 Andrew Mutz. See LICENSE.txt for
+Copyright (c) 2012 AppFolio, inc. See LICENSE.txt for
 further details.
 

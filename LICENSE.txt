@@ -1,4 +1,11 @@
-Copyright (c) 2012 AppFolio, inc.
+The js.jar file is from the Mozilla Rhino project and its license can be viewed 
+here:  https://github.com/mozilla/rhino/blob/master/LICENSE.txt
+
+The contents of the css_lint directory are from the CSS Lint project and can
+be viewed here:  https://github.com/stubbornella/csslint/blob/master/LICENSE
+
+
+Everything else Copyright (c) 2012 AppFolio, inc.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

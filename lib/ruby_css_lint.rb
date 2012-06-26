@@ -50,7 +50,7 @@ module RubyCssLint
       "duplicate-background-images" => RubyCssLint::WARNING,
       "duplicate-properties" => RubyCssLint::WARNING,
       "empty-rules" => RubyCssLint::WARNING,
-      "errors" => RubyCssLint::WARNING,
+      "errors" => RubyCssLint::ERROR,
       "fallback-colors" => RubyCssLint::WARNING,
       "floats" => RubyCssLint::WARNING,
       "font-faces" => RubyCssLint::WARNING,

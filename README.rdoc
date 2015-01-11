@@ -12,6 +12,8 @@ To install Ruby CSS Lint, Add it to your gemfile
 And after a bundle install, run it:
   rake css_lint:run
 
+To run on a CI system, and have the task return a failing exit code with any problems:
+  rake css_lint:ci
 
 You probably want more control over things, so generate a config file:
   rake css_lint:generate_config

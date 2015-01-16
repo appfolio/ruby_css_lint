@@ -118,7 +118,7 @@ HEADER
 FOOTER
       tempfile.puts`cat #{list_of_js_files_to_compile_step_2}`
       tempfile.flush
-      return run_rhino_with_js_file(tempfile.path, css_files, output_location)
+      run_rhino_with_js_file(tempfile.path, css_files, output_location)
     end
 
     
@@ -130,7 +130,7 @@ FOOTER
     command += " > #{output_location}" if output_location
     result = `#{command}`
     puts result
-    return $?.exitstatus
+    $?.exitstatus
   end
   
   def self.list_of_js_files_to_compile_step_1

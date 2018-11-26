@@ -1,0 +1,10 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "csslint/npm/package.json",
+        "csslint/release/npm/package.json"
+      ]
+    }
+  }
+}

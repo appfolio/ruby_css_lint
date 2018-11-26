@@ -1,5 +1,7 @@
 = ruby_css_lint
 
+{<img src="https://badges.greenkeeper.io/appfolio/ruby_css_lint.svg" alt="Greenkeeper badge">}[https://greenkeeper.io/]
+
 A repackaging of [CSS Lint](https://github.com/stubbornella/csslint) for use with Rails.
 
 If you're using Rails 3.1, you probably want to run css lint on your precompiled assets.  Compile them:

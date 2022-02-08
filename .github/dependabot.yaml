@@ -1,0 +1,33 @@
+---
+version: 2
+registries:
+  ruby-github:
+    type: rubygems-server
+    url: https://rubygems.pkg.github.com/appfolio
+    token: "${{secrets.READ_ONLY_PACKAGES_CCIMU}}"
+  npm-github:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: "${{secrets.READ_ONLY_PACKAGES_CCIMU}}"
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+  pull-request-branch-name:
+    separator: "-"
+  registries: "*"
+- package-ecosystem: npm
+  directory: "/csslint/npm"
+  schedule:
+    interval: daily
+  pull-request-branch-name:
+    separator: "-"
+  registries: "*"
+- package-ecosystem: npm
+  directory: "/csslint/release/npm"
+  schedule:
+    interval: daily
+  pull-request-branch-name:
+    separator: "-"
+  registries: "*"

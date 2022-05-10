@@ -12,6 +12,10 @@ if defined?(Rails)
             RubyCssLint::construct_js_and_run_rhino(RubyCssLint::location_of_css_files(Rails.root))
           end
 
+          task :ci => :environment do |t|
+            fail if RubyCssLint::construct_js_and_run_rhino(RubyCssLint::location_of_css_files(Rails.root)) > 0
+          end
+
           task :dump_to_file => :environment do |t|
             RubyCssLint::construct_js_and_run_rhino(RubyCssLint::location_of_css_files(Rails.root), 'css_lint_output.txt')
           end
@@ -126,6 +130,7 @@ FOOTER
     command += " > #{output_location}" if output_location
     result = `#{command}`
     puts result
+    $?.exitstatus
   end
   
   def self.list_of_js_files_to_compile_step_1
